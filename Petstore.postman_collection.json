@@ -1,0 +1,584 @@
+{
+	"info": {
+		"_postman_id": "b9e4680d-c4fa-4499-a5c6-ab1d7f26175e",
+		"name": "Petstore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19242841"
+	},
+	"item": [
+		{
+			"name": "Pet",
+			"item": [
+				{
+					"name": "adding a new pet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1122334455,\r\n  \"category\": {\r\n    \"id\": 1122334455,\r\n    \"name\": \"cat\"\r\n  },\r\n  \"name\": \"Schmurik\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 1122334455,\r\n      \"name\": \"britishcat\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pet",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get pet by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pet/{{petId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet",
+								"{{petId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find pet by status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pet/findByStatus?status=sold,pending",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet",
+								"findByStatus"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "sold,pending"
+								},
+								{
+									"key": "id",
+									"value": "1122334455",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "uploads an image",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "additionalMetadata",
+									"value": "Image jpg",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/User/OneDrive/Рабочий стол/combo.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pet/{{petId}}/uploadImage",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet",
+								"{{petId}}",
+								"uploadImage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updates an existing pet",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1122334455,\r\n  \"category\": {\r\n    \"id\": 1122334455,\r\n    \"name\": \"cat\"\r\n  },\r\n  \"name\": \"Caesar\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 1122334455,\r\n      \"name\": \"britishcat\"\r\n    }\r\n  ],\r\n  \"status\": \"pending\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pet",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updates an existing pet v2 (formdata)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Caesar",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "available",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pet/{{petId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet",
+								"{{petId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletes a pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "api_key",
+								"value": "special-key",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/pet/{{petId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet",
+								"{{petId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Store",
+			"item": [
+				{
+					"name": "Add an order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1122334455,\r\n  \"petId\": 1122334455,\r\n  \"quantity\": 1,\r\n  \"shipDate\": \"2023-03-31T07:36:28.010Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/store/order",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"store",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find order by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/store/order/1122334455",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"store",
+								"order",
+								"1122334455"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete an order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/store/order/1122334455",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"store",
+								"order",
+								"1122334455"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Chain: Creates a user > finds a user",
+					"item": [
+						{
+							"name": "create user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"id = pm.response.json().id\r",
+											"pm.collectionVariables.set(\"user_ID\", id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "  {\r\n    \"id\": {{user_ID}},\r\n    \"username\": \"Witcher\",\r\n    \"firstName\": \"Geralt\",\r\n    \"lastName\": \"Rivia\",\r\n    \"email\": \"grivia@ya.ru\",\r\n    \"password\": \"121212\",\r\n    \"phone\": \"+13311331\",\r\n    \"userStatus\": 0\r\n  }  ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/user",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Finds user",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/user/{{user_ID}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"{{user_ID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Creates a user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1155,\r\n  \"username\": \"LeaveMe\",\r\n  \"firstName\": \"Alex\",\r\n  \"lastName\": \"Ford\",\r\n  \"email\": \"aford@gmail.com\",\r\n  \"password\": \"123qwerty\",\r\n  \"phone\": \"+123456789\",\r\n  \"userStatus\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Creates multiple users with Array",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n  {\r\n    \"id\": 1206,\r\n    \"username\": \"Dovakin\",\r\n    \"firstName\": \"Vasya\",\r\n    \"lastName\": \"Pupkin\",\r\n    \"email\": \"vpupkin@ya.ru\",\r\n    \"password\": \"111111\",\r\n    \"phone\": \"+12211221\",\r\n    \"userStatus\": 0\r\n  },\r\n  {\r\n    \"id\": 1207,\r\n    \"username\": \"Witcher\",\r\n    \"firstName\": \"Geralt\",\r\n    \"lastName\": \"Rivia\",\r\n    \"email\": \"grivia@ya.ru\",\r\n    \"password\": \"121212\",\r\n    \"phone\": \"+13311331\",\r\n    \"userStatus\": 0\r\n  }  \r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/createWithArray",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"createWithArray"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "finds user by username",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/:username",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								":username"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "Witcher"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Updates user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1207,\r\n    \"username\": \"Witcher\",\r\n    \"firstName\": \"Geraldina\",\r\n    \"lastName\": \"Rivia\",\r\n    \"email\": \"grivia@ya.ru\",\r\n    \"password\": \"121212\",\r\n    \"phone\": \"+13311331\",\r\n    \"userStatus\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/:username",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								":username"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "Witcher"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user logins",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/login?username=Witcher&password =121212",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "Witcher"
+								},
+								{
+									"key": "password ",
+									"value": "121212"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user logouts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/logout?username=Witcher&password =121212",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"logout"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "Witcher"
+								},
+								{
+									"key": "password ",
+									"value": "121212"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletes a user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/:username",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								":username"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "Witcher"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://petstore.swagger.io/v2",
+			"type": "string"
+		},
+		{
+			"key": "user_ID",
+			"value": "1257"
+		},
+		{
+			"key": "petId",
+			"value": "1122334455"
+		}
+	]
+}
